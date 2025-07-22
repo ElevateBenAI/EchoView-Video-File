@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EchoView - Decode Body Language. Elevate Every Virtual Call.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1D1D1D; /* Dark background from brand guidelines */
+            color: #FFFFFF; /* White text for contrast */
+        }
+        .gradient-bg-blue {
+            background: linear-gradient(to right, #00193A, #3DA5D9); /* Dark Blue to Light Blue */
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #3DA5D9, #0BFB23); /* Light Blue to Green gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary {
+            background-color: #EF8354; /* Orange color from brand guidelines */
+            color: #FFFFFF;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #E07245; /* Slightly darker orange on hover */
+            transform: translateY(-2px);
+        }
+        .feature-icon-color {
+            color: #0BFB23; /* Green color from brand guidelines */
+        }
+        .shadow-custom {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        /* CSS for Slide In Animation (from left) */
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-100%); /* Start off-screen to the left */
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0); /* End at its natural position */
+            }
+        }
+
+        /* CSS for Slide In Animation (from right) */
+        @keyframes slideInFromRight {
+            0% {
+                opacity: 0;
+                transform: translateX(100%); /* Start off-screen to the right */
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0); /* End at its natural position */
+            }
+        }
+
+        /* Initial state: Hidden and off-screen (for left slide-in) */
+        .slide-in-element {
+            opacity: 0;
+            transform: translateX(-100%);
+            visibility: hidden; /* Ensure it's not visible before animation */
+        }
+
+        /* Initial state: Hidden and off-screen (for right slide-in) */
+        .slide-in-right-element {
+            opacity: 0;
+            transform: translateX(100%);
+            visibility: hidden; /* Ensure it's not visible before animation */
+        }
+
+        /* State when element becomes visible and animation should play (for left slide-in) */
+        .slide-in-element.is-visible {
+            visibility: visible; /* Make it visible for animation */
+            animation: slideInFromLeft 0.8s ease-out forwards;
+        }
+
+        /* State when element becomes visible and animation should play (for right slide-in) */
+        .slide-in-right-element.is-visible {
+            visibility: visible; /* Make it visible for animation */
+            animation: slideInFromRight 0.8s ease-out forwards;
+        }
+
+        /* Staggered animation delays for the Impact section header */
+        #impact .slide-in-right-element.is-visible:nth-child(1) { animation-delay: 0s; }
+        #impact .slide-in-right-element.is-visible:nth-child(2) { animation-delay: 0.2s; }
+        #impact .slide-in-right-element.is-visible:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Staggered animation delays for the Problem section bullets (still from left) */
+        #problem .slide-in-element.is-visible:nth-child(1) { animation-delay: 0s; }
+        #problem .slide-in-element.is-visible:nth-child(2) { animation-delay: 0.2s; }
+        #problem .slide-in-element.is-visible:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Staggered animation delays for the Solution section bullets (still from left) */
+        #solution .slide-in-element.is-visible:nth-child(1) { animation-delay: 0s; }
+        #solution .slide-in-element.is-visible:nth-child(2) { animation-delay: 0.2s; }
+        #solution .slide-in-element.is-visible:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Staggered animation delays for the Impact section bullet points */
+        #impact .impact-bullet.is-visible:nth-child(1) { animation-delay: 0s; }
+        #impact .impact-bullet.is-visible:nth-child(2) { animation-delay: 0.2s; }
+        #impact .impact-bullet.is-visible:nth-child(3) { animation-delay: 0.4s; }
+
+        /* Video background styling */
+        .hero-video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures video covers the entire area */
+            z-index: -1; /* Place behind content */
+        }
+        .hero-video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #1D1D1D; /* Dark background color */
+            opacity: 0.4; /* Opacity for the overlay */
+            z-index: 0; /* Place above video, below content */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header class="gradient-bg-blue py-4 shadow-xl fixed w-full z-50">
+        <div class="container mx-auto flex justify-between items-center px-4 md:px-8">
+            <div class="text-left">
+                <h1 class="text-4xl font-extrabold gradient-text leading-none">EchoView</h1>
+                <p class="text-sm text-gray-200 mt-1">Nonverbal Intelligence for the Digital World</p>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#problem" class="text-white hover:text-gray-200 transition duration-300 font-medium">Why EchoView</a></li>
+                    <li><a href="#solution" class="text-white hover:text-gray-200 transition duration-300 font-medium">How It Works</a></li>
+                    <li class="mt-[-2]"><a href="#features" class="text-white hover:text-gray-200 transition duration-300 font-medium">Features</a></li>
+                    <li><a href="#pricing" class="text-white hover:text-gray-200 transition duration-300 font-medium">Pricing</a></li>
+                    <li><a href="#cta" class="btn-primary py-2 px-5 rounded-full font-semibold text-sm">Early Access</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center text-center overflow-hidden pt-20">
+        <!-- Video background -->
+        <video autoplay loop muted playsinline class="hero-video-background">
+            <source src="https://res.cloudinary.com/dcsbgsh5x/video/upload/v1752476376/freepik__closeup-shot-a-professional-man-in-a-suit-engages-__69068_phrke6.mp4" type="video/mp4">
+            <!-- Consider adding a .webm source for broader browser support -->
+            <!-- <source src="YOUR_DIRECT_VIDEO_FILE_URL_HERE.webm" type="video/webm"> -->
+            Your browser does not support the video tag.
+        </video>
+        <!-- Video overlay to maintain opacity -->
+        <div class="hero-video-overlay"></div>
+
+        <div class="relative z-10 py-12 max-w-5xl mx-auto bg-gray-900 bg-opacity-70 rounded-xl shadow-custom">
+            <h2 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 gradient-text">
+                <span>Decode Body Language.</span> <br class="md:hidden">Elevate Every Virtual Call.
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto">
+                See what words miss. Reveal the hidden signals that drive trust, sales, and real connection.
+            </p>
+            <a href="#cta" class="btn-primary py-4 px-10 rounded-full text-lg font-bold shadow-xl">
+                Unlock Early Access
+            </a>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem" class="py-16 scroll-mt-20 bg-gray-900">
+        <div class="container mx-auto px-4 md:px-8">
+            <!-- Corrected placement of the section title -->
+            <h3 class="text-4xl font-bold text-center mb-12 gradient-text">The Virtual Communication Gap</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6">
+                        On video calls, key signals like—<span class="font-bold feature-icon-color">hesitation</span>, <span class="font-bold feature-icon-color">skepticism</span>, <span class="font-bold feature-icon-color">disengagement</span>, or <span class="font-bold feature-icon-color">buying interest</span>—are easily missed. This means even skilled sales and success teams can miss the chance to adjust in the moment, losing deals and trust they could have won.
+                    </p>
+                    <!-- New header added here -->
+                    <h4 class="text-xl font-bold text-gray-200 mb-2 mt-6">What You Didn't Know About Communication:</h4>
+                    <p class="text-lg text-gray-300 leading-relaxed" id="problem-bullets-container">
+                        <span class="slide-in-element block"><span class="feature-icon-color mr-2">➜</span>55% of communication comes from body language.</span>
+                        <span class="slide-in-element block"><span class="feature-icon-color mr-2 font-bold">➜</span>Just 7% is from the actual words we use.</span>
+                        <span class="slide-in-element block"><span class="feature-icon-color mr-2">➜</span>Most virtual meetings only focus on the talk.</span><br><br>
+                        <span class="font-bold">EchoView looks at the whole picture — so you don’t miss the signals that matter most.</span>
+                    </p>
+                </div>
+                <div class="relative flex justify-center items-center order-1 md:order-2 w-full h-96 rounded-lg overflow-hidden shadow-custom">
+                    <!-- Background image for Missed Cues (Problem Section) -->
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://i.imgur.com/me5khT5.jpeg'); background-position: center 20%;"></div>
+                    <!-- Text layered on top -->
+                    <div class="relative z-10 text-center p-4 bg-black bg-opacity-50 rounded-lg">
+                        <p class="text-2xl font-bold text-white">Missed Cues</p>
+                        <p class="text-xl text-gray-200">(Unread Signals)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="py-16 scroll-mt-20 bg-gray-800">
+        <div class="container mx-auto px-4 md:px-8">
+            <h3 class="text-4xl font-bold text-center mb-12 gradient-text">Master Your Virtual Sales Meetings with AI Insights</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="flex flex-col justify-center items-center order-1 md:order-1">
+                    <div class="relative w-full h-96 rounded-lg overflow-hidden shadow-custom">
+                        <!-- Background image for Real-time Insights (Solution Section) -->
+                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://i.imgur.com/pll85b7.png');"></div>
+                        <!-- Text layered on top -->
+                        <div class="relative z-10 text-center p-4 bg-black bg-opacity-50 rounded-lg">
+                            <p class="text-2xl font-bold text-white">Real-time Insights</p>
+                        </div>
+                    </div>
+                    <!-- Color key underneath the image -->
+                    <div class="text-center text-white text-sm mt-4 leading-relaxed border-2 border-red-500">
+                        <span style="color: #0BFB23;">🟢</span> High →
+                        <span style="color: #FFD700;">🟡</span> Curious →
+                        <span style="color: #FFA500;">🟠</span> Excitable →
+                        <span style="color: #3DA5D9;">🔵</span> Diplomatic →
+                        <span style="color: #CCCCCC;">⚪</span> Passive →
+                        <span style="color: #FF0000;">🔴</span> Concern
+                    </div>
+                </div>
+                <div class="order-2 md:order-2">
+                    <!-- New header added here -->
+                    <h4 class="text-xl font-bold text-gray-200 mb-2">EchoView runs as a lightweight browser extension, seamlessly overlaying Zoom, Teams, and Google Meet.</h4>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-6">
+                        Our observational AI reads the room, measuring 8,000 data points per-second such as <span class="font-bold feature-icon-color">micro-expressions</span>, <span class="font-bold feature-icon-color">posture changes</span>, and <span class="font-bold feature-icon-color">engagement levels</span> during live calls.
+                    </p>
+                    <ul class="list-none text-lg text-gray-300 space-y-3" id="solution-bullets-container">
+                        <li class="slide-in-element"><span class="feature-icon-color mr-2 font-bold">➜</span><span class="font-bold">Real-time Indicators:</span> Subtle color coded status bubbles show who's engaged or checked out.</li>
+                        <li class="slide-in-element"><span class="feature-icon-color mr-2 font-bold">➜</span><span class="font-bold">Actionable Insights:</span> Pinpoint moments when engagement dips or buying signals spike, helping you adapt your pitch and strategy in real time.</li>
+                        <li class="slide-in-element"><span class="feature-icon-color mr-2 font-bold">➜</span><span class="font-bold">Post-Call Summaries:</span> Detailed meeting summaries for smarter follow-up and coaching.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Differentiating Factors/Features Section -->
+    <section id="features" class="py-16 scroll-mt-20 bg-gray-900">
+        <div class="container mx-auto px-4 md:px-8">
+            <h3 class="text-4xl font-bold text-center mb-12 gradient-text">What Makes EchoView Different?</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gray-700 p-8 rounded-lg shadow-custom text-center transition-transform hover:scale-105 duration-300">
+                    <div class="text-5xl mb-4 feature-icon-color">⚡</div>
+                    <h4 class="text-2xl font-semibold mb-3 text-white">Real-time Engagement Tracking</h4>
+                    <p class="text-gray-300">Analyzes live physical behaviors for real-time attention and presence assessment.</p>
+                </div>
+                <div class="bg-gray-700 p-8 rounded-lg shadow-custom text-center transition-transform hover:scale-105 duration-300">
+                    <div class="text-5xl mb-4 feature-icon-color">✨</div>
+                    <h4 class="text-2xl font-semibold mb-3 text-white">Seamless Install and Usability</h4>
+                    <p class="text-gray-300">Simple plug-in for Zoom, Teams, and Google Meet. No extra devices, just seamless use with instant results.</p>
+                </div>
+                <div class="bg-gray-700 p-8 rounded-lg shadow-custom text-center transition-transform hover:scale-105 duration-300">
+                    <div class="text-5xl mb-4 feature-icon-color">📈</div>
+                    <h4 class="text-2xl font-semibold mb-3 text-white">Built for Sales Impact</h4>
+                    <p class="text-gray-300">Optimized for maximizing virtual sales training, customer engagement, and meeting performance.</p>
+                </div>
+                <div class="bg-gray-700 p-8 rounded-lg shadow-custom text-center transition-transform hover:scale-105 duration-300">
+                    <div class="text-5xl mb-4 feature-icon-color">🧠</div>
+                    <h4 class="text-2xl font-semibold mb-3 text-white">Behavioral Intelligence</h4>
+                    <p class="text-gray-300">Interprets complex behaviors that detect engagement quality and buying signals beyond helping you do more than just show up.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact & Use Case Section -->
+    <section id="impact" class="py-16 scroll-mt-20 bg-gray-800">
+        <div class="container mx-auto px-4 md:px-8">
+            <h3 class="text-4xl font-bold text-center mb-12 gradient-text">Immediate Impact for Your Business</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="relative flex justify-center items-center order-2 md:order-1 w-full h-96 rounded-lg overflow-hidden shadow-custom">
+                    <!-- Background image for Increased ROI (Impact Section) -->
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://i.imgur.com/GjctEw8.jpeg'); background-position: center top;"></div>
+                    <!-- Text layered on top -->
+                    <div class="relative z-10 text-center p-4 bg-black bg-opacity-50 rounded-lg">
+                        <p class="text-2xl font-bold text-white">Increased ROI</p>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h4 class="text-3xl font-semibold mb-6 text-white">
+                        <span class="slide-in-right-element block">Close Deals Faster.</span>
+                        <span class="slide-in-right-element block" style="animation-delay: 0.2s;">Communicate Effectively.</span>
+                        <span class="slide-in-right-element block" style="animation-delay: 0.4s;">Build Strong Relationships.</span>
+                    </h4>
+                    <p class="text-lg text-gray-300 leading-relaxed mb-4"> Sarah, an Account Executive, is presenting her platform to a potential client. When pricing comes up, EchoView picks up on slight tension from the prospect. Sarah sees the signal right away. Quickly she adjusts her presentation to focus on value, overcoming the budget concerns with ease, builds trust — and closes the sale.
+                    </p>
+                    <p class="text-lg text-gray-300 leading-relaxed font-bold">
+                        EchoView translates missed opportunities into closed sales, leading to:
+                    </p>
+                    <ul class="list-none text-lg text-gray-300 mt-4 space-y-2" id="impact-bullets-list">
+                        <li class="slide-in-right-element"><span class="feature-icon-color mr-2 font-bold">✔</span>Shorter sales cycles, bigger commissions.</li>
+                        <li class="slide-in-right-element"><span class="feature-icon-color mr-2 font-bold">✔</span>More deals closed, more often.</li>
+                        <li class="slide-in-right-element"><span class="feature-icon-color mr-2 font-bold">✔</span>Boosted trust and brand credibility that opens doors.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-16 scroll-mt-20 bg-gray-900">
+        <div class="container mx-auto px-4 md:px-8">
+            <h3 class="text-4xl font-bold text-center mb-6 gradient-text">Pricing that scales with your performance!</h3>
+            <p class="text-lg text-gray-300 text-center mb-12 max-w-3xl mx-auto">
+                Whether you’re just starting to test the power of EchoView, or ready to turn yourself into a top performer — Elevate Innovations has a plan for you.
+            </p>
+
+            <div class="overflow-x-auto rounded-lg shadow-custom">
+                <table class="w-full text-left text-gray-300">
+                    <thead class="text-xs text-white uppercase bg-gray-700">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 rounded-tl-lg">Plan</th>
+                            <th scope="col" class="px-6 py-3">Price / mo</th>
+                            <th scope="col" class="px-6 py-3 rounded-tr-lg">Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-gray-800 border-b border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">
+                                <span class="font-bold">Freemium</span>
+                            </th>
+                            <td class="px-6 py-4">$0</td>
+                            <td class="px-6 py-4">Explore simple engagement insights + say goodbye to missed opportunities</td>
+                        </tr>
+                        <tr class="bg-gray-800 border-b border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">
+                                <span class="font-bold">Basic</span>
+                            </th>
+                            <td class="px-6 py-4">$9.99</td>
+                            <td class="px-6 py-4">Reps wanting increased close rates + maximized commisions</td>
+                        </tr>
+                        <tr class="bg-gray-800 border-b border-gray-700">
+                            <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap">
+                                <span class="font-bold">Sales Pro</span>
+                            </th>
+                            <td class="px-6 py-4">$19.99</td>
+                            <td class="px-6 py-4">Reps who want live real-time coaching + performance summaries </td>
+                        </tr>
+                        <tr class="bg-gray-800">
+                            <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap rounded-bl-lg">
+                                <span class="font-bold">Sales Guru</span>
+                            </th>
+                            <td class="px-6 py-4">$29.99</td>
+                            <td class="px-6 py-4 rounded-br-lg">Leaders & powerhouse reps who train with data exports + unstoppable sales call mastery</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-white text-center mt-8 text-lg font-semibold">
+                ✅ Start free today — upgrade anytime.
+            </p>
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section id="cta" class="gradient-bg-blue py-16 scroll-mt-20 text-center">
+        <div class="container mx-auto px-4 md:px-8">
+            <h3 class="text-4xl md:text-5xl font-bold text-white mb-6">Stop Missing Opportunities and Maximize Every Sale!</h3>
+            <p class="text-xl md:text-2xl text-gray-200 mb-10">
+                Join our early access list and be one of the first to experience smarter meetings, sharper sales calls, and better performance outcomes, powered by EchoView's real-time behavioral insights.
+            </p>
+            <a href="#" class="btn-primary py-4 px-12 rounded-full text-xl font-bold shadow-2xl">
+                Sign Up for Early Access Today!
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 py-8 text-center text-gray-400">
+        <div class="container mx-auto px-4 md:px-8">
+            <p>&copy; 2025 Elevate Innovations. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Observer for the Impact section header
+            const impactHeader = document.querySelector('#impact .order-1.md\\:order-2 h4');
+            if (impactHeader) {
+                const impactHeaderObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.querySelectorAll('.slide-in-right-element').forEach(span => {
+                                span.classList.add('is-visible');
+                            });
+                            impactHeaderObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                impactHeaderObserver.observe(impactHeader);
+            } else {
+                console.log("Impact Header Element not found.");
+            }
+
+            // Observer for the Problem section bullet points
+            const problemBulletsContainer = document.querySelector('#problem-bullets-container');
+            if (problemBulletsContainer) {
+                const problemObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.querySelectorAll('.slide-in-element').forEach(span => {
+                                span.classList.add('is-visible');
+                            });
+                            problemObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                problemObserver.observe(problemBulletsContainer);
+            } else {
+                console.log("Problem Bullets Container not found.");
+            }
+
+            // Observer for the Solution section bullet points
+            const solutionBulletsContainer = document.querySelector('#solution-bullets-container');
+            if (solutionBulletsContainer) {
+                const solutionObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.querySelectorAll('.slide-in-element').forEach(li => {
+                                li.classList.add('is-visible');
+                            });
+                            solutionObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                solutionObserver.observe(solutionBulletsContainer);
+            } else {
+                console.log("Solution Bullets Container not found.");
+            }
+
+            // Observer for the Impact section bullet points
+            const impactBulletsList = document.querySelector('#impact-bullets-list');
+            if (impactBulletsList) {
+                const impactBulletsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.querySelectorAll('.slide-in-right-element').forEach(li => { // Changed to slide-in-right-element
+                                li.classList.add('is-visible');
+                            });
+                            impactBulletsObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                impactBulletsObserver.observe(impactBulletsList);
+            } else {
+                console.log("Impact Bullets List not found.");
+            }
+        });
+    </script>
+
+</body>
+</html>
