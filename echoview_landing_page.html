@@ -64,14 +64,12 @@
         .slide-in-element {
             opacity: 0;
             transform: translateX(-100%);
-            visibility: hidden; /* Ensure it's not visible before animation */
         }
 
         /* Initial state: Hidden and off-screen (for right slide-in) */
         .slide-in-right-element {
             opacity: 0;
             transform: translateX(100%);
-            visibility: hidden; /* Ensure it's not visible before animation */
         }
 
         /* State when element becomes visible and animation should play (for left slide-in) */
@@ -143,9 +141,34 @@
                     <li><a href="#solution" class="text-white hover:text-gray-200 transition duration-300 font-medium">How It Works</a></li>
                     <li class="mt-[-2]"><a href="#features" class="text-white hover:text-gray-200 transition duration-300 font-medium">Features</a></li>
                     <li><a href="#pricing" class="text-white hover:text-gray-200 transition duration-300 font-medium">Pricing</a></li>
+                    <li><a href="#ai-pitch-coach" class="text-white hover:text-gray-200 transition duration-300 font-medium">AI Coach</a></li>
                     <li><a href="#cta" class="btn-primary py-2 px-5 rounded-full font-semibold text-sm">Early Access</a></li>
                 </ul>
             </nav>
+
+            <!-- Mobile Hamburger Button -->
+            <button id="mobileMenuButton" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="mobile-menu fixed inset-0 bg-gray-900 z-40 flex flex-col items-center justify-center space-y-8 md:hidden">
+            <button id="closeMobileMenuButton" class="absolute top-4 right-4 text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <ul class="text-2xl font-bold text-center space-y-6">
+                <li><a href="#problem" class="text-white hover:text-gray-200 transition duration-300" onclick="document.getElementById('mobileMenu').classList.remove('is-open');">Why EchoView</a></li>
+                <li><a href="#solution" class="text-white hover:text-gray-200 transition duration-300" onclick="document.getElementById('mobileMenu').classList.remove('is-open');">How It Works</a></li>
+                <li><a href="#features" class="text-white hover:text-gray-200 transition duration-300" onclick="document.getElementById('mobileMenu').classList.remove('is-open');">Features</a></li>
+                <li><a href="#pricing" class="text-white hover:text-gray-200 transition duration-300" onclick="document.getElementById('mobileMenu').classList.remove('is-open');">Pricing</a></li>
+                <li><a href="#ai-pitch-coach" class="text-white hover:text-gray-200 transition duration-300" onclick="document.getElementById('mobileMenu').classList.remove('is-open');">AI Coach</a></li>
+                <li><a href="#cta" class="btn-primary py-3 px-6 rounded-full text-lg font-bold" onclick="document.getElementById('mobileMenu').classList.remove('is-open');">Early Access</a></li>
+            </ul>
         </div>
     </header>
 
@@ -154,21 +177,19 @@
         <!-- Video background -->
         <video autoplay loop muted playsinline class="hero-video-background">
             <source src="https://res.cloudinary.com/dcsbgsh5x/video/upload/v1752476376/freepik__closeup-shot-a-professional-man-in-a-suit-engages-__69068_phrke6.mp4" type="video/mp4">
-            <!-- Consider adding a .webm source for broader browser support -->
-            <!-- <source src="YOUR_DIRECT_VIDEO_FILE_URL_HERE.webm" type="video/webm"> -->
             Your browser does not support the video tag.
         </video>
         <!-- Video overlay to maintain opacity -->
         <div class="hero-video-overlay"></div>
 
-        <div class="relative z-10 py-12 max-w-5xl mx-auto bg-gray-900 bg-opacity-70 rounded-xl shadow-custom">
+        <div class="relative z-10 py-8 max-w-5xl mx-auto bg-gray-900 bg-opacity-70 rounded-xl shadow-custom">
             <h2 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 gradient-text">
                 <span>Decode Body Language.</span> <br class="md:hidden">Elevate Every Virtual Call.
             </h2>
             <p class="text-xl md:text-2xl text-gray-200 mb-10 max-w-3xl mx-auto">
                 See what words miss. Reveal the hidden signals that drive trust, sales, and real connection.
             </p>
-            <a href="#cta" class="btn-primary py-4 px-10 rounded-full text-lg font-bold shadow-xl">
+            <a href="#cta" class="btn-primary py-4 px-10 rounded-full text-lg font-bold shadow-xl w-full md:w-auto">
                 Unlock Early Access
             </a>
         </div>
@@ -177,14 +198,12 @@
     <!-- Problem Section -->
     <section id="problem" class="py-16 scroll-mt-20 bg-gray-900">
         <div class="container mx-auto px-4 md:px-8">
-            <!-- Corrected placement of the section title -->
             <h3 class="text-4xl font-bold text-center mb-12 gradient-text">The Virtual Communication Gap</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="order-2 md:order-1">
+                <div class="order-2 md:order-1 max-w-2xl mx-auto">
                     <p class="text-lg text-gray-300 leading-relaxed mb-6">
                         On video calls, key signals like—<span class="font-bold feature-icon-color">hesitation</span>, <span class="font-bold feature-icon-color">skepticism</span>, <span class="font-bold feature-icon-color">disengagement</span>, or <span class="font-bold feature-icon-color">buying interest</span>—are easily missed. This means even skilled sales and success teams can miss the chance to adjust in the moment, losing deals and trust they could have won.
                     </p>
-                    <!-- New header added here -->
                     <h4 class="text-xl font-bold text-gray-200 mb-2 mt-6">What You Didn't Know About Communication:</h4>
                     <p class="text-lg text-gray-300 leading-relaxed" id="problem-bullets-container">
                         <span class="slide-in-element block"><span class="feature-icon-color mr-2">➜</span>55% of communication comes from body language.</span>
@@ -193,10 +212,8 @@
                         <span class="font-bold">EchoView looks at the whole picture — so you don’t miss the signals that matter most.</span>
                     </p>
                 </div>
-                <div class="relative flex justify-center items-center order-1 md:order-2 w-full h-96 rounded-lg overflow-hidden shadow-custom">
-                    <!-- Background image for Missed Cues (Problem Section) -->
+                <div class="relative flex justify-center items-center order-1 md:order-2 w-full h-96 rounded-lg overflow-hidden shadow-custom max-w-2xl mx-auto">
                     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://i.imgur.com/me5khT5.jpeg'); background-position: center 20%;"></div>
-                    <!-- Text layered on top -->
                     <div class="relative z-10 text-center p-4 bg-black bg-opacity-50 rounded-lg">
                         <p class="text-2xl font-bold text-white">Missed Cues</p>
                         <p class="text-xl text-gray-200">(Unread Signals)</p>
@@ -211,17 +228,13 @@
         <div class="container mx-auto px-4 md:px-8">
             <h3 class="text-4xl font-bold text-center mb-12 gradient-text">Master Your Virtual Sales Meetings with AI Insights</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                <div class="flex flex-col justify-center items-center order-1 md:order-1">
-                    <div class="relative w-full h-96 rounded-lg overflow-hidden shadow-custom">
-                        <!-- Background image for Real-time Insights (Solution Section) -->
-                        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://i.imgur.com/pll85b7.png');"></div>
-                        <!-- Text layered on top -->
-                        <div class="relative z-10 text-center p-4 bg-black bg-opacity-50 rounded-lg">
-                            <p class="text-2xl font-bold text-white">Real-time Insights</p>
-                        </div>
+                <div class="flex flex-col justify-center items-center order-1 md:order-1 max-w-2xl mx-auto">
+                    <div class="relative w-full pb-[75%] rounded-lg overflow-hidden shadow-custom">
+                        <!-- Direct image tag for Real-time Insights (Solution Section) -->
+                        <img src="https://i.imgur.com/6ae5a1.jpg" alt="Behavioral Insights Dashboard" class="absolute inset-0 w-full h-full object-cover">
                     </div>
                     <!-- Color key underneath the image -->
-                    <div class="text-center text-white text-sm mt-4 leading-relaxed border-2 border-red-500">
+                    <div class="text-center text-white text-sm mt-4 leading-relaxed">
                         <span style="color: #0BFB23;">🟢</span> High →
                         <span style="color: #FFD700;">🟡</span> Curious →
                         <span style="color: #FFA500;">🟠</span> Excitable →
@@ -230,8 +243,7 @@
                         <span style="color: #FF0000;">🔴</span> Concern
                     </div>
                 </div>
-                <div class="order-2 md:order-2">
-                    <!-- New header added here -->
+                <div class="order-2 md:order-2 max-w-2xl mx-auto">
                     <h4 class="text-xl font-bold text-gray-200 mb-2">EchoView runs as a lightweight browser extension, seamlessly overlaying Zoom, Teams, and Google Meet.</h4>
                     <p class="text-lg text-gray-300 leading-relaxed mb-6">
                         Our observational AI reads the room, measuring 8,000 data points per-second such as <span class="font-bold feature-icon-color">micro-expressions</span>, <span class="font-bold feature-icon-color">posture changes</span>, and <span class="font-bold feature-icon-color">engagement levels</span> during live calls.
@@ -281,9 +293,7 @@
             <h3 class="text-4xl font-bold text-center mb-12 gradient-text">Immediate Impact for Your Business</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                 <div class="relative flex justify-center items-center order-2 md:order-1 w-full h-96 rounded-lg overflow-hidden shadow-custom">
-                    <!-- Background image for Increased ROI (Impact Section) -->
                     <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://i.imgur.com/GjctEw8.jpeg'); background-position: center top;"></div>
-                    <!-- Text layered on top -->
                     <div class="relative z-10 text-center p-4 bg-black bg-opacity-50 rounded-lg">
                         <p class="text-2xl font-bold text-white">Increased ROI</p>
                     </div>
@@ -304,6 +314,29 @@
                         <li class="slide-in-right-element"><span class="feature-icon-color mr-2 font-bold">✔</span>More deals closed, more often.</li>
                         <li class="slide-in-right-element"><span class="feature-icon-color mr-2 font-bold">✔</span>Boosted trust and brand credibility that opens doors.</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Pitch Coach Section -->
+    <section id="ai-pitch-coach" class="py-16 scroll-mt-20 bg-gray-900">
+        <div class="container mx-auto px-4 md:px-8">
+            <h3 class="text-4xl font-bold text-center mb-12 gradient-text">Improve Your Pitch with AI</h3>
+            <p class="text-lg text-gray-300 text-center mb-8 max-w-3xl mx-auto">
+                Enter your sales pitch below and get instant, intelligent feedback from our Gemini-powered AI coach, helping you refine your delivery and maximize impact.
+            </p>
+            <div class="max-w-3xl mx-auto bg-gray-800 p-8 rounded-lg shadow-custom">
+                <label for="pitchInput" class="block text-white text-lg font-semibold mb-4">Your Sales Pitch:</label>
+                <textarea id="pitchInput" class="w-full p-4 rounded-lg bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 h-48 mb-6" placeholder="Enter your pitch here..."></textarea>
+                <button id="getFeedbackBtn" class="btn-primary py-3 px-8 rounded-full text-lg font-bold w-full">
+                    ✨ Get AI Feedback
+                </button>
+                <div id="feedbackLoading" class="hidden text-center mt-4 text-gray-400">
+                    Generating feedback...
+                </div>
+                <div id="pitchFeedback" class="mt-8 p-6 bg-gray-700 rounded-lg text-gray-200 leading-relaxed whitespace-pre-wrap hidden">
+                    <!-- AI feedback will be displayed here -->
                 </div>
             </div>
         </div>
@@ -461,8 +494,68 @@
             } else {
                 console.log("Impact Bullets List not found.");
             }
+
+            // --- Gemini API Integration for Pitch Coach ---
+            const getFeedbackBtn = document.getElementById('getFeedbackBtn');
+            const pitchInput = document.getElementById('pitchInput');
+            const pitchFeedback = document.getElementById('pitchFeedback');
+            const feedbackLoading = document.getElementById('feedbackLoading');
+
+            if (getFeedbackBtn && pitchInput && pitchFeedback && feedbackLoading) {
+                getFeedbackBtn.addEventListener('click', async () => {
+                    const pitch = pitchInput.value.trim();
+                    if (!pitch) {
+                        pitchFeedback.textContent = 'Please enter a pitch to get feedback.';
+                        pitchFeedback.classList.remove('hidden');
+                        return;
+                    }
+
+                    feedbackLoading.classList.remove('hidden');
+                    pitchFeedback.classList.add('hidden');
+                    pitchFeedback.textContent = ''; // Clear previous feedback
+
+                    try {
+                        let chatHistory = [];
+                        const prompt = `Review the following sales pitch and provide constructive feedback on its clarity, persuasiveness, and areas for improvement. Suggest specific changes and alternative phrasing. Simulate how a potential client might react. Limit the response to 200 words. \n\nPitch: "${pitch}"`;
+                        chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+                        const payload = { contents: chatHistory };
+                        const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        const result = await response.json();
+
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            const text = result.candidates[0].content.parts[0].text;
+                            pitchFeedback.textContent = text;
+                        } else {
+                            pitchFeedback.textContent = 'Could not generate feedback. Please try again.';
+                        }
+                    } catch (error) {
+                        console.error('Error calling Gemini API:', error);
+                        pitchFeedback.textContent = 'An error occurred while getting feedback. Please try again later.';
+                    } finally {
+                        feedbackLoading.classList.add('hidden');
+                        pitchFeedback.classList.remove('hidden');
+                    }
+                });
+            } else {
+                console.log("AI Pitch Coach elements not found.");
+            }
         });
     </script>
+
+    <!-- Chat Widget -->
+    <chat-widget location-id="rdGCqaUI8nfFk8lZVCg6"></chat-widget>
+    <script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"></script>
 
 </body>
 </html>
